@@ -7,11 +7,10 @@ spec:
   project: default
   source:
     repoURL: https://github.com/nalsaud/nd064_course_1.git
-    path: project/argocd/helm-techtrends-prod
+    path: helm
     targetRevision: main
     helm:
       valueFiles:
-        - values.yaml
         - values-prod.yaml
   destination:
     server: https://kubernetes.default.svc
@@ -19,4 +18,6 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      selfHeal: false  # Recommended for production
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true

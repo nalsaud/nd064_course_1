@@ -3,17 +3,17 @@ namespace: staging
 replicaCount: 3
 
 image:
-  repository: techtrends
-  tag: latest
+  repository: nourhans/techtrends  
+  tag: staging  
   pullPolicy: IfNotPresent
 
 service:
-  port: 5111
-  targetPort: 3111
+  port: 8080  
+  targetPort: 8080  
   protocol: TCP
   type: ClusterIP
 
-containerPort: 3111
+containerPort: 8080  
 
 resources:
   requests:
@@ -24,7 +24,13 @@ resources:
     cpu: "500m"
 
 livenessProbe:
-  path: /healthz
+  path: /  # Or your actual health endpoint
+  port: 8080
+  initialDelaySeconds: 10
+  periodSeconds: 15
 
 readinessProbe:
-  path: /healthz
+  path: /  # Or your actual health endpoint
+  port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 10
