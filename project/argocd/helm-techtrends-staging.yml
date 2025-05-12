@@ -7,11 +7,12 @@ spec:
   project: default
   source:
     repoURL: https://github.com/nalsaud/nd064_course_1.git
-    path: helm
+    path: project/helm        
     targetRevision: main
     helm:
       valueFiles:
-        - values-staging.yaml
+        - values.yaml
+        - values-staging.yaml 
   destination:
     server: https://kubernetes.default.svc
     namespace: staging
@@ -19,5 +20,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
