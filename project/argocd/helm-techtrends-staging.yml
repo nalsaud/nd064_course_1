@@ -6,14 +6,14 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/nalsaud/techtrends-helm-chart.git'
-    targetRevision: HEAD
-    path: charts/techtrends
+    repoURL: https://github.com/nalsaud/nd064_course_1.git
+    path: project/argocd/helm-techtrends-staging
+    targetRevision: main
     helm:
       valueFiles:
-        - values-staging.yaml
+        - values.yaml
   destination:
-    server: 'https://kubernetes.default.svc'
+    server: https://kubernetes.default.svc
     namespace: staging
   syncPolicy:
     automated:

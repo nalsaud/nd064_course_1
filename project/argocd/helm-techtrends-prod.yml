@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/nalsaud/nd064_course_1/tree/main/project/argocd  # Update this
-    path: charts/techtrends  # Or use 'chart: techtrends' if in a Helm repo
-    targetRevision: HEAD
+    repoURL: https://github.com/nalsaud/nd064_course_1.git
+    path: project/argocd/helm-techtrends-prod
+    targetRevision: main
     helm:
       valueFiles:
         - values.yaml
@@ -19,6 +19,4 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true  # Optional: creates namespace if missing
+      selfHeal: false  # Recommended for production
