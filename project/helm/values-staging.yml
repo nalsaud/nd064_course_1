@@ -1,10 +1,9 @@
 namespace: staging
-
 replicaCount: 3
 
 image:
   repository: nourhans/techtrends  
-  tag: staging  
+  tag: latest  
   pullPolicy: IfNotPresent
 
 service:
@@ -24,13 +23,22 @@ resources:
     cpu: "500m"
 
 livenessProbe:
-  path: /  # Or your actual health endpoint
+  path: /healthz  
   port: 8080
-  initialDelaySeconds: 10
+  initialDelaySeconds: 30  
   periodSeconds: 15
+  failureThreshold: 3  # Allow 3 failures before restart
 
 readinessProbe:
-  path: /  # Or your actual health endpoint
+  path: /healthz  
   port: 8080
-  initialDelaySeconds: 5
+  initialDelaySeconds: 5  # Shorter initial delay for readiness
   periodSeconds: 10
+  successThreshold: 1
+  failureThreshold: 3
+
+
+metrics:
+  enabled: true
+  path: /metrics
+  port: 8080

@@ -1,45 +1,43 @@
-namespace: prod  
-
-replicaCount: 3  
+namespace: prod
+replicaCount: 5  # More replicas for higher availability
 
 image:
   repository: nourhans/techtrends
-  tag: v1.0
-  pullPolicy: Always
+  tag: latest
+  pullPolicy: IfNotPresent
 
 service:
   port: 8080
   targetPort: 8080
+  protocol: TCP
   type: ClusterIP
-  protocol: TCP  
 
 containerPort: 8080
 
 resources:
   requests:
-    memory: "256Mi"  
-    cpu: "500m"
+    memory: "150Mi"
+    cpu: "400m"
   limits:
-    memory: "512Mi"  
-    cpu: "1000m"
+    memory: "256Mi"
+    cpu: "700m"
 
 livenessProbe:
-  path: /healthz  
+  path: /healthz
   port: 8080
-  initialDelaySeconds: 30  
-  periodSeconds: 15
+  initialDelaySeconds: 30
+  periodSeconds: 10
   failureThreshold: 3
 
 readinessProbe:
-  path: /readyz  
+  path: /healthz
   port: 8080
   initialDelaySeconds: 5
   periodSeconds: 10
   successThreshold: 1
   failureThreshold: 3
 
-autoscaling:
+metrics:
   enabled: true
-  minReplicas: 3
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 80
+  path: /metrics
+  port: 8080

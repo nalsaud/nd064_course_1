@@ -1,19 +1,18 @@
 namespace: sandbox
-
 replicaCount: 1
 
 image:
-  repository: nourhans/techtrends  
-  tag: v1.0-sandbox  
+  repository: nourhans/techtrends
+  tag: v1.0-sandbox
   pullPolicy: IfNotPresent
 
 service:
-  port: 3111  
-  targetPort: 3111  
+  port: 3111
+  targetPort: 3111
   protocol: TCP
   type: ClusterIP
 
-containerPort: 3111  
+containerPort: 3111
 
 resources:
   requests:
@@ -24,13 +23,13 @@ resources:
     cpu: "500m"
 
 livenessProbe:
-  path: /healthz  
-  port: 3111  
-  initialDelaySeconds: 30  
-  periodSeconds: 20  
+  path: /healthz
+  port: 3111
+  initialDelaySeconds: 30
+  periodSeconds: 20
 
 readinessProbe:
-  path: /healthz  
-  port: 3111  
-  initialDelaySeconds: 5  
-  periodSeconds: 10  
+  path: /healthz
+  port: 3111
+  initialDelaySeconds: 5
+  periodSeconds: 10
