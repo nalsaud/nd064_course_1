@@ -27,13 +27,13 @@ livenessProbe:
   port: 3111
   initialDelaySeconds: 30  
   periodSeconds: 15
-  failureThreshold: 3  # Allow 3 failures before restart
+  failureThreshold: 3  
   enabled: false 
 
 readinessProbe:
   path: /healthz  
   port: 3111
-  initialDelaySeconds: 5  # Shorter initial delay for readiness
+  initialDelaySeconds: 5  
   periodSeconds: 10
   successThreshold: 1
   failureThreshold: 3
