@@ -27,9 +27,11 @@ livenessProbe:
   port: 3111
   initialDelaySeconds: 30
   periodSeconds: 20
+  enabled: false 
 
 readinessProbe:
   path: /healthz
   port: 3111
   initialDelaySeconds: 5
   periodSeconds: 10
+  enabled: false 

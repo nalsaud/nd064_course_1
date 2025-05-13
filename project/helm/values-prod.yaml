@@ -28,7 +28,7 @@ livenessProbe:
   initialDelaySeconds: 30
   periodSeconds: 10
   failureThreshold: 3
-
+  enabled: false 
 readinessProbe:
   path: /healthz
   port: 8080
@@ -36,8 +36,10 @@ readinessProbe:
   periodSeconds: 10
   successThreshold: 1
   failureThreshold: 3
+  enabled: false 
 
 metrics:
   enabled: true
   path: /metrics
   port: 8080
+  enabled: false 
