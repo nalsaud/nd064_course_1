@@ -7,12 +7,12 @@ image:
   pullPolicy: Always 
 
 service:
-  port: 8080  
-  targetPort: 8080  
-  protocol: TCP
-  type: ClusterIP
+  type: NodePort
+  port: 80
+  targetPort: 8080
+  nodePort: 30008
 
-containerPort: 8080  
+containerPort: 3111  
 
 resources:
   requests:
@@ -24,7 +24,7 @@ resources:
 
 livenessProbe:
   path: /healthz  
-  port: 8080
+  port: 3111
   initialDelaySeconds: 30  
   periodSeconds: 15
   failureThreshold: 3  # Allow 3 failures before restart
@@ -32,7 +32,7 @@ livenessProbe:
 
 readinessProbe:
   path: /healthz  
-  port: 8080
+  port: 3111
   initialDelaySeconds: 5  # Shorter initial delay for readiness
   periodSeconds: 10
   successThreshold: 1
@@ -43,5 +43,5 @@ readinessProbe:
 metrics:
   enabled: true
   path: /metrics
-  port: 8080
+  port: 3111
   enabled: false 

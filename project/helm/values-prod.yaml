@@ -17,7 +17,7 @@ containerPort: 3111
 
 resources:
   requests:
-    memory: "256Mi"      # 💡 requests < limits is the best practice
+    memory: "256Mi"     
     cpu: "400m"
   limits:
     memory: "512Mi"
