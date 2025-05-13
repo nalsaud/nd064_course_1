@@ -1,10 +1,10 @@
 namespace: prod
-replicaCount: 5  # More replicas for higher availability
+replicaCount: 3 
 
 image:
   repository: nourhans/techtrends
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always 
 
 service:
   port: 8080
@@ -16,7 +16,7 @@ containerPort: 8080
 
 resources:
   requests:
-    memory: "150Mi"
+    memory: "512Mi"
     cpu: "400m"
   limits:
     memory: "256Mi"

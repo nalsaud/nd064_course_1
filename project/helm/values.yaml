@@ -3,8 +3,8 @@ replicaCount: 1
 
 image:
   repository: nourhans/techtrends
-  tag: v1.0-sandbox
-  pullPolicy: IfNotPresent
+  tag: latest
+  pullPolicy: Always  
 
 service:
   port: 3111
