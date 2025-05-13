@@ -1,6 +1,6 @@
 namespace: prod
 
-replicaCount: 3
+replicaCount: 5
 
 image:
   repository: nourhans/techtrends
@@ -9,38 +9,24 @@ image:
 
 service:
   type: NodePort
-  port: 80
+  port: 7111
   targetPort: 8080
   nodePort: 30008
 
-containerPort: 3111
+containerPort: 7111
 
 resources:
   requests:
-    memory: "256Mi"     
-    cpu: "400m"
+    memory: "128Mi"
+    cpu: "350m"
   limits:
-    memory: "512Mi"
-    cpu: "700m"
+    memory: "256Mi"
+    cpu: "500m"
 
 livenessProbe:
   enabled: false
   path: /healthz
-  port: 3111
+  port: 7111
   initialDelaySeconds: 30
   periodSeconds: 10
-  failureThreshold: 3
-
-readinessProbe:
-  enabled: false
-  path: /healthz
-  port: 3111
-  initialDelaySeconds: 5
-  periodSeconds: 10
-  successThreshold: 1
-  failureThreshold: 3
-
-metrics:
-  enabled: false
-  path: /metrics
-  port: 3111
+  fail
